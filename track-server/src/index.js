@@ -1,3 +1,4 @@
+require("./models/User");
 require("dotenv").config({
   path: "../.env",
 });
