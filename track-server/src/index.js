@@ -6,6 +6,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
 const mongoose = require("mongoose");
+const requireAuth = require("./middlewares/requireAuth");
 
 const mongoUri = `mongodb+srv://devvanks:${process.env.MONGODB_PASS}@cluster0.katlwe8.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(mongoUri);
@@ -20,8 +21,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(authRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/", requireAuth, (req, res) => {
+  console.log(req.user);
+  res.send(`Your email: ${req.user.email}`);
 });
 
 app.listen(3000, () => {
