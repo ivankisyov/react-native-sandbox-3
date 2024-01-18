@@ -1,3 +1,4 @@
+require("./models/Track");
 require("./models/User");
 require("dotenv").config({
   path: "../.env",
@@ -5,6 +6,7 @@ require("dotenv").config({
 const express = require("express");
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
+const trackRoutes = require("./routes/trackRoutes");
 const mongoose = require("mongoose");
 const requireAuth = require("./middlewares/requireAuth");
 
@@ -20,6 +22,7 @@ mongoose.connection.on("error", (err) => {
 const app = express();
 app.use(bodyParser.json());
 app.use(authRoutes);
+app.use(trackRoutes);
 
 app.get("/", requireAuth, (req, res) => {
   console.log(req.user);
