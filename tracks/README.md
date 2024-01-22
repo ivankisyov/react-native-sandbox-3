@@ -10,4 +10,6 @@
    1. Express
 4. DB 
    1. MondoDB
+5. RN libraries
+   1. react-native-elements - https://reactnativeelements.com/ 
 
