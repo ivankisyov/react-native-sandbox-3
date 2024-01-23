@@ -10,6 +10,8 @@ import AccountScreen from "./src/screens/AccountScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { Provider as AuthProvider } from "./src/context/AuthContext";
+import { navigationRef } from "./src/helpers/navigationRef";
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -42,7 +44,7 @@ const MainFlow = () => (
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator>
         <Stack.Screen
           name="LoginFlow"
@@ -59,4 +61,10 @@ const App = () => {
   );
 };
 
-export default App;
+export default () => {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+};

@@ -13,3 +13,6 @@
 5. RN libraries
    1. react-native-elements - https://reactnativeelements.com/ 
 
+### Test users
+- test4@test.com  password
+
