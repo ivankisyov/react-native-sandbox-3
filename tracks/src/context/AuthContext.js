@@ -62,8 +62,12 @@ const signout = (dispatch) => {
   };
 };
 
+const clearErrorMewssage = (dispatch) => () => {
+  dispatch({ type: "clear_error_message" });
+};
+
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signin, signout, signup },
+  { signin, signout, signup, clearErrorMewssage },
   { isSignedIn: false, errorMessage: "", token: null }
 );

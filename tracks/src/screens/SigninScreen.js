@@ -3,9 +3,18 @@ import { View, StyleSheet } from "react-native";
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
 import { Context as AuthContext } from "../context/AuthContext";
+import { useFocusEffect } from "@react-navigation/native";
 
 const SigninScreen = () => {
-  const { state, signin } = useContext(AuthContext);
+  const { state, signin, clearErrorMewssage } = useContext(AuthContext);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => {
+        clearErrorMewssage();
+      };
+    }, [])
+  );
 
   return (
     <View style={styles.container}>
