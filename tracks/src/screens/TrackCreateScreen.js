@@ -1,10 +1,13 @@
 import React from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
+import { View, StyleSheet, Button } from "react-native";
+import { Text, Input } from "react-native-elements";
+import Map from "../components/Map";
 
-const TrackCreateScreen = ({ navigation }) => {
+const TrackCreateScreen = () => {
   return (
-    <View>
-      <Text style={{ fontSize: 48 }}>TrackCreateScreen</Text>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text h2>Create a track</Text>
+      <Map />
     </View>
   );
 };
