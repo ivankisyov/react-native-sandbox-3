@@ -25,7 +25,7 @@ const tryLocalSignin = (dispatch) => async () => {
     dispatch({ type: "signin", payload: token });
     navigate("MainFlow");
   } else {
-    navigate("LoginFlow");
+    navigate("Signup");
   }
 };
 
@@ -68,8 +68,10 @@ const signin = (dispatch) => {
 };
 
 const signout = (dispatch) => {
-  return () => {
-    // somehow sign out!!!
+  return async () => {
+    await AsyncStorage.removeItem("token");
+    dispatch({ type: "signout" });
+    navigate("Signup");
   };
 };
 
