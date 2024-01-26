@@ -1,5 +1,4 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import SigninScreen from "./src/screens/SigninScreen";
 import SignupScreen from "./src/screens/SignupScreen";
@@ -7,7 +6,7 @@ import TrackListScreen from "./src/screens/TrackListScreen";
 import TrackDetailsScreen from "./src/screens/TrackDetailsScreen";
 import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import AccountScreen from "./src/screens/AccountScreen";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
@@ -18,6 +17,11 @@ const Tab = createMaterialBottomTabNavigator();
 
 const LoginFlow = () => (
   <Stack.Navigator>
+    <Stack.Screen
+      name="ResolveAuth"
+      component={ResolveAuthScreen}
+      options={{ headerShown: false }}
+    />
     <Stack.Screen
       name="Signup"
       component={SignupScreen}
