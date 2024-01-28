@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Button } from "react-native";
 import { Text, Input } from "react-native-elements";
 import Map from "../components/Map";
-import { requestForegroundPermissionsAsync } from "expo-location";
+import {
+  requestForegroundPermissionsAsync,
+  watchPositionAsync,
+  Accuracy,
+} from "expo-location";
+import "../mocks/_mockLocation";
 
 const TrackCreateScreen = () => {
   const [err, setErr] = useState(null);
@@ -13,6 +18,16 @@ const TrackCreateScreen = () => {
       if (!granted) {
         throw new Error("Location permission not granted");
       }
+      await watchPositionAsync(
+        {
+          accuracy: Accuracy.BestForNavigation,
+          timeInterval: 1000,
+          distanceInterval: 10,
+        },
+        (location) => {
+          console.log(location);
+        }
+      );
     } catch (e) {
       setErr(e);
     }
