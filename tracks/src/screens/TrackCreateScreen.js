@@ -2,14 +2,15 @@ import React, { useEffect, useState, useContext } from "react";
 import { View, StyleSheet, Button } from "react-native";
 import { Text, Input } from "react-native-elements";
 import Map from "../components/Map";
-
+import { useIsFocused } from "@react-navigation/native";
 import "../mocks/_mockLocation";
 import { Context as LocationContext } from "../context/LocationContext";
 import useLocation from "../hooks/useLocation";
 
 const TrackCreateScreen = () => {
   const { addLocation } = useContext(LocationContext);
-  const [err] = useLocation(addLocation);
+  const isFocused = useIsFocused();
+  const [err] = useLocation(isFocused, addLocation);
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
