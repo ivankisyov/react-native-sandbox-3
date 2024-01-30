@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
 import { View, StyleSheet, Button } from "react-native";
 import { Text, Input } from "react-native-elements";
 import Map from "../components/Map";
@@ -11,9 +11,13 @@ import TrackForm from "../components/TrackForm";
 const TrackCreateScreen = () => {
   const { state, addLocation } = useContext(LocationContext);
   const isFocused = useIsFocused();
-  const [err] = useLocation(isFocused, (location) =>
-    addLocation(location, state.recording)
+  const callback = useCallback(
+    (location) => {
+      addLocation(location, state.recording);
+    },
+    [state.recording] // this is the dependency array
   );
+  const [err] = useLocation(isFocused, callback);
 
   return (
     <View style={{ flex: 1, justifyContent: "center" }}>

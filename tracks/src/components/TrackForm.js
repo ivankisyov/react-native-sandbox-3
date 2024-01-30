@@ -16,13 +16,11 @@ const TrackForm = ({ onSubmit, submitButtonText }) => {
       <Spacer>
         <Input
           placeholder="Enter name"
-          //   value={email}
           onChangeText={changeName}
           autoCapitalize="none"
           autoCorrect={false}
         />
       </Spacer>
-
       {recording ? (
         <Button title="Stop" onPress={stopRecording} />
       ) : (
