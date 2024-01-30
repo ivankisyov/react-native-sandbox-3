@@ -20,7 +20,7 @@ const Map = () => {
   //   }
   // }
   const {
-    state: { currentLocation },
+    state: { currentLocation, locations },
   } = useContext(LocationContext);
   const initialLocation = {
     longitude: -122.0312186,
@@ -48,6 +48,7 @@ const Map = () => {
       // }}
     >
       {/* <Polyline coordinates={mockedPoints} /> */}
+      <Polyline coordinates={locations.map((loc) => loc.coords)} />
       <Circle
         center={currentLocation.coords}
         radius={30}
