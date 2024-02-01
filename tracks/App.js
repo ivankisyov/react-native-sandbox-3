@@ -13,6 +13,7 @@ import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { navigationRef } from "./src/helpers/navigationRef";
 import { Provider as LocationProvider } from "./src/context/LocationContext";
 import { Provider as TrackProvider } from "./src/context/TrackContext";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -39,16 +40,51 @@ const LoginFlow = () => (
 
 const TrackFlow = () => (
   <Stack.Navigator>
-    <Stack.Screen name="TrackList" component={TrackListScreen} />
+    <Stack.Screen
+      name="TrackList"
+      component={TrackListScreen}
+      options={{ headerShown: false }}
+    />
     <Stack.Screen name="TrackDetails" component={TrackDetailsScreen} />
   </Stack.Navigator>
 );
 
 const MainFlow = () => (
   <Tab.Navigator>
-    <Tab.Screen name="TrackFlow" component={TrackFlow} />
-    <Tab.Screen name="TrackCreate" component={TrackCreateScreen} />
-    <Tab.Screen name="Account" component={AccountScreen} />
+    <Tab.Screen
+      name="TrackFlow"
+      component={TrackFlow}
+      options={{
+        tabBarLabel: "Tracks",
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons
+            name="map-marker-radius"
+            color={color}
+            size={26}
+          />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="TrackCreate"
+      component={TrackCreateScreen}
+      options={{
+        tabBarLabel: "Add Track",
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="plus" color={color} size={26} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Account"
+      component={AccountScreen}
+      options={{
+        tabBarLabel: "Account",
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="account" color={color} size={26} />
+        ),
+      }}
+    />
   </Tab.Navigator>
 );
 

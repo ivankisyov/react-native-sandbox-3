@@ -25,14 +25,27 @@ const TrackListScreen = () => {
 
   return (
     <View>
-      <Text style={{ fontSize: 48 }}>TrackListScreen</Text>
+      <Text
+        style={{
+          fontSize: 48,
+          marginTop: 50,
+          marginBottom: 20,
+          textAlign: "center",
+        }}
+      >
+        Tracks
+      </Text>
       {state.length ? (
         <FlatList
           data={state}
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("TrackDetails", { _id: item._id })
+                }
+              >
                 <ListItem>
                   <ListItem.Content>
                     <ListItem.Title>{item.name}</ListItem.Title>
